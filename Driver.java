@@ -11,7 +11,6 @@ import java.util.Random; // Used to give a 25% chance of adding a new customer a
 public class Driver{
 
 	public static void main(String [] args){
-
 		int addCust = 0; // Holds a value of 1-4, if the value is 1 a new customer is added to the queue.
 		int custServed = 0; // Holds the number of customers served in 60 min.
 		int maxLineSize = 0; // Holds the maximum length of the queue.
