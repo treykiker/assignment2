@@ -4,10 +4,12 @@ public class PriorityQueue{
 
 	private PriorityCustomer[] queue;
 	private int size;
+	private int index;
 
 	public PriorityQueue(){
 		queue = new PriorityCustomer[60];
 		size = 0;
+		index = 0;
 	}
 
 	public void addCustomer(PriorityCustomer c){
@@ -16,6 +18,7 @@ public class PriorityQueue{
 
 		while(index > 1){
 			int parent = (index) / 2;
+			PriorityCustomer rootValue = queue[1]; 
 
 			if(queue[parent].getPriority() < c.getPriority()){
 				queue[index] = queue[parent];
@@ -30,16 +33,32 @@ public class PriorityQueue{
 		size++;
 	}
 
+	public void addCustomer2(PriorityCustomer c){
+		int index = size + 1;
+		queue[index] = c;
+
+		while(index > 1){
+			PriorityCustomer rootValue = queue[1]; 
+
+			PriorityCustomer temp = queue[index];
+			for(int i = (index - 1); i >= 2; i--){
+				queue[i + 1] = queue[i];
+			}
+			queue[2] = temp;
+	    }
+	    size++;
+	}
+
 	public PriorityCustomer removeCustomer(){
 		PriorityCustomer rootValue = queue[1];      //store root value to return at the end
 		PriorityCustomer x = queue[size];           //store last value in heap in v
 		queue[1] = x;                  //take v and move to root
 		queue[size] = null;               //delete node at last position (b/c we moved it to the root)
 	   
-		int index = 1;
+		int index2 = 1;
 		  
-		while(index * 2 < size){      //is there at least one child at index
-			int leftIndex = (index * 2) - 1;
+		while(index2 * 2 < size){      //is there at least one child at index
+			int leftIndex = index2 * 2;
 			int rightIndex = leftIndex + 1;
 			 
 			PriorityCustomer leftValue = queue[leftIndex];
@@ -61,9 +80,9 @@ public class PriorityQueue{
 			}
 			 
 			if(x.getPriority() < maxChild.getPriority()){             //value is less than the larger child -> swap
-				queue[index] = maxChild;    //perform swap with larger of two children
+				queue[index2] = maxChild;    //perform swap with larger of two children
 				queue[maxIndex] = x;
-				index = maxIndex;
+				index2 = maxIndex;
 			}
 			else{
 				break;                     //value is in a valid position -> stop
@@ -81,5 +100,13 @@ public class PriorityQueue{
 
 	public PriorityCustomer getFirst(){
 		return queue[1];
+	}
+
+	public String toString(){
+		return queue[1].getPriority() + " " + queue[2].getPriority() + " " + queue[3].getPriority() + " " + queue[4].getPriority() + " " + queue[5].getPriority() + " " + queue[6].getPriority();
+	}
+
+	public String toString2(){
+		return queue[1].getPriority() + " " + queue[2].getPriority() + " " + queue[3].getPriority() + " " + queue[4].getPriority() + " " + queue[5].getPriority();
 	}
 }	
