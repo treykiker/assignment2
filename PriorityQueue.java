@@ -4,12 +4,10 @@ public class PriorityQueue{
 
 	private PriorityCustomer[] queue;
 	private int size;
-	private int index;
 
 	public PriorityQueue(){
 		queue = new PriorityCustomer[60];
 		size = 0;
-		index = 0;
 	}
 
 	public void addCustomer(PriorityCustomer c){
@@ -26,6 +24,13 @@ public class PriorityQueue{
 
 				index = parent;
 			}
+			else if(rootValue.getPriority() < c.getPriority()){
+				PriorityCustomer temp = queue[index];
+					for(int i = (index - 1); i >= 2; i--){
+						queue[i + 1] = queue[i];
+					}
+				queue[2] = temp;
+			}
 			else{
 				break;
 			}
@@ -33,28 +38,12 @@ public class PriorityQueue{
 		size++;
 	}
 
-	public void addCustomer2(PriorityCustomer c){
-		int index = size + 1;
-		queue[index] = c;
-
-		while(index > 1){
-			PriorityCustomer rootValue = queue[1]; 
-
-			PriorityCustomer temp = queue[index];
-			for(int i = (index - 1); i >= 2; i--){
-				queue[i + 1] = queue[i];
-			}
-			queue[2] = temp;
-	    }
-	    size++;
-	}
-
 	public PriorityCustomer removeCustomer(){
 		PriorityCustomer rootValue = queue[1];      //store root value to return at the end
-		PriorityCustomer x = queue[size];           //store last value in heap in v
+		PriorityCustomer x = queue[size];           //store last value in heap in x
 		queue[1] = x;                  //take v and move to root
 		queue[size] = null;               //delete node at last position (b/c we moved it to the root)
-	   
+		
 		int index2 = 1;
 		  
 		while(index2 * 2 < size){      //is there at least one child at index

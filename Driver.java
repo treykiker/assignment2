@@ -47,16 +47,8 @@ public class Driver{
 
 			if(addCust == 1){ // If the value is 1, a new customer is created and added to the queue. A message and the queue size is displayed to the user.
 				PriorityCustomer c = new PriorityCustomer();
-				PriorityCustomer first = cqueue.getFirst();
-				if(first == null){
-					cqueue.addCustomer(c);
-				}
-				else if(first.getPriority() < c.getPriority()){
-					cqueue.addCustomer2(c);
-				}
-				else{
-					cqueue.addCustomer(c);
-				}
+				cqueue.addCustomer(c);
+
 				System.out.println("New customer added! Queue length is now " + cqueue.getSize() + ".");
 			}
 
