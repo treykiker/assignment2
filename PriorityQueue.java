@@ -15,7 +15,7 @@ public class PriorityQueue{
 		queue[index] = c;
 
 		while(index > 1){
-			int parent = (index) / 2;
+			int parent = index / 2;
 			PriorityCustomer rootValue = queue[1]; 
 
 			if(queue[parent].getPriority() < c.getPriority()){
@@ -44,10 +44,10 @@ public class PriorityQueue{
 		queue[1] = x;                  //take v and move to root
 		queue[size] = null;               //delete node at last position (b/c we moved it to the root)
 		
-		int index2 = 1;
+		int index = 1;
 		  
-		while(index2 * 2 < size){      //is there at least one child at index
-			int leftIndex = index2 * 2;
+		while(index * 2 < size){      //is there at least one child at index
+			int leftIndex = (index * 2) ;
 			int rightIndex = leftIndex + 1;
 			 
 			PriorityCustomer leftValue = queue[leftIndex];
@@ -69,9 +69,9 @@ public class PriorityQueue{
 			}
 			 
 			if(x.getPriority() < maxChild.getPriority()){             //value is less than the larger child -> swap
-				queue[index2] = maxChild;    //perform swap with larger of two children
+				queue[index] = maxChild;    //perform swap with larger of two children
 				queue[maxIndex] = x;
-				index2 = maxIndex;
+				index = maxIndex;
 			}
 			else{
 				break;                     //value is in a valid position -> stop
