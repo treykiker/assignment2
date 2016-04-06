@@ -21,7 +21,6 @@ public class PriorityQueue{
 			if(queue[parent].getPriority() < c.getPriority()){
 				queue[index] = queue[parent];
 				queue[parent] = c;
-
 				index = parent;
 			}
 			else if(rootValue.getPriority() < c.getPriority()){
@@ -47,7 +46,7 @@ public class PriorityQueue{
 		int index = 1;
 		  
 		while(index * 2 < size){      //is there at least one child at index
-			int leftIndex = (index * 2) ;
+			int leftIndex = (index * 2) - 1;
 			int rightIndex = leftIndex + 1;
 			 
 			PriorityCustomer leftValue = queue[leftIndex];
@@ -77,7 +76,6 @@ public class PriorityQueue{
 				break;                     //value is in a valid position -> stop
 			}
 		}
-		  
 	size --;                      //update size
 		  
 	return rootValue;             //return old root
@@ -89,13 +87,5 @@ public class PriorityQueue{
 
 	public PriorityCustomer getFirst(){
 		return queue[1];
-	}
-
-	public String toString(){
-		return queue[1].getPriority() + " " + queue[2].getPriority() + " " + queue[3].getPriority() + " " + queue[4].getPriority() + " " + queue[5].getPriority() + " " + queue[6].getPriority();
-	}
-
-	public String toString2(){
-		return queue[1].getPriority() + " " + queue[2].getPriority() + " " + queue[3].getPriority() + " " + queue[4].getPriority() + " " + queue[5].getPriority();
 	}
 }	

@@ -11,31 +11,6 @@ import java.util.Random; // Used to give a 25% chance of adding a new customer a
 public class Driver{
 
 	public static void main(String [] args){
-		/*PriorityQueue cqueue = new PriorityQueue();
-
-		PriorityCustomer a = new PriorityCustomer();
-		cqueue.addCustomer(a);
-		System.out.println(a.getPriority());
-		PriorityCustomer b = new PriorityCustomer();
-		cqueue.addCustomer(b);
-		System.out.println(b.getPriority());
-		PriorityCustomer c = new PriorityCustomer();
-		cqueue.addCustomer(c);
-		System.out.println(c.getPriority());
-		PriorityCustomer d = new PriorityCustomer();
-		cqueue.addCustomer(d);
-		System.out.println(d.getPriority());
-		PriorityCustomer e = new PriorityCustomer();
-		cqueue.addCustomer(e);
-		System.out.println(e.getPriority());
-		PriorityCustomer f = new PriorityCustomer();
-		cqueue.addCustomer(f);
-		System.out.println(f.getPriority());
-
-		System.out.println(cqueue.toString());
-		cqueue.removeCustomer();
-		System.out.println(cqueue.toString2());*/
-
 		int addCust = 0; // Holds a value of 1-4, if the value is 1 a new customer is added to the queue.
 		int custServed = 0; // Holds the number of customers served in 60 min.
 		int maxLineSize = 0; // Holds the maximum length of the queue.
@@ -62,7 +37,7 @@ public class Driver{
 
 			PriorityCustomer first = cqueue.getFirst(); // The first customer in the queue is the customer currently being serviced.
 
-			if(cqueue.getSize() == 0){ // If the queue is empty nothing happens and a message is displayed to the user.
+			if(first == null){ // If the queue is empty nothing happens and a message is displayed to the user.
 				System.out.println("The queue is empty, no customers serviced!");
 			}
 			else if(first.getServiceTime() > 0){ // If the serviceTime of the customer being serviced is greater than 0, serviceTime
